@@ -15,11 +15,11 @@ from tensorflow.keras.layers import Conv2D, Dense, Flatten, BatchNormalization
 # print(tf.version)
 # print("**************")
 
-# #Image Loading and PreProcessing
-# (xtrain, ytrain), (xtest, ytest) = tfutils.datasets.mnist.load_data(one_hot = False)
-# xtrain = tfutils.datasets.mnist.load_subset([0], xtrain, ytrain)
-# xtest = tfutils.datasets.mnist.load_subset([0], xtest, ytest)
-# x = np.concatenate([xtrain, xtest], axis = 0)
+#Image Loading and PreProcessing
+(xtrain, ytrain), (xtest, ytest) = tfutils.datasets.mnist.load_data(one_hot = False)
+xtrain = tfutils.datasets.mnist.load_subset([0], xtrain, ytrain)
+xtest = tfutils.datasets.mnist.load_subset([0], xtest, ytest)
+x = np.concatenate([xtrain, xtest], axis = 0)
 # tfutils.datasets.mnist.plot_ten_random_examples(plt, x, np.zeros((x.shape[0], 1))).show()
 
 discriminator = Sequential(
@@ -66,11 +66,15 @@ generator = Sequential(
 Deep Convolutional Generative Adversal Network
 """
 #noise input
-
 input_layer = tf.keras.layers.Input(shape=(1,))
 generator_out = generator(input_layer)
 discriminator_out = discriminator(generator_out)
 gan = Model(input_layer, discriminator_out)
 discriminator.trainable = False
 gan.compile(loss='binary_crossentropy', optimizer=Optimizer, metrics=['accuracy'])
-gan.summary()
+#gan.summary()
+
+epoch = 25
+batch_size = 128
+steps_per_epoch = int(2*x.shape[0]/batch_size)
+print('Steps per Epoch = ', steps_per_epoch)
