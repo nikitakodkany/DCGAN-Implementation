@@ -66,4 +66,11 @@ generator = Sequential(
 Deep Convolutional Generative Adversal Network
 """
 #noise input
+
 input_layer = tf.keras.layers.Input(shape=(1,))
+generator_out = generator(input_layer)
+discriminator_out = discriminator(generator_out)
+gan = Model(input_layer, discriminator_out)
+discriminator.trainable = False
+gan.compile(loss='binary_crossentropy', optimizer=Optimizer, metrics=['accuracy'])
+gan.summary()
