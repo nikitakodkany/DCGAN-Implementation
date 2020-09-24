@@ -111,4 +111,5 @@ for e in range(0, epoch):
 
     noise = np.random.randn(1,1)
     generated_image = generator.predict(noise)[0]
-    # dynamic_plotting.end_of_epoch(generated_image,'binary','Discriminator Acc.:{:2f}'.format(acc),'Gan Loss:{:2f}'.format(loss))
+    generated_image = np.reshape(generated_image,(28,28))
+    dynamic_plotting.end_of_epoch(generated_image,'binary','Discriminator Acc.:{:2f}'.format(acc),'Gan Loss:{:2f}'.format(loss))
