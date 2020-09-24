@@ -13,8 +13,8 @@ To read more on the DCGAN, refer to the original paper - https://arxiv.org/pdf/1
 * Keras - with tensorflow in the backend & importing layers and model.
 * NumPy - Mathematical computations.
 * PIL - Image manipulation.
-* Matplotlib - For the plotting of images
-* tfutils - Utility for Keras and Tensorflow
+* Matplotlib - For the plotting of images.
+* tfutils - Utility for Keras and Tensorflow.
 
 
 ```sh
